@@ -1,0 +1,135 @@
+/* Cards.css */
+
+/* ── Category Section ─────────────────────────────────── */
+.category-section {
+    margin-bottom: 3rem;
+    padding-left: 2rem;
+}
+
+.category-title {
+    font-family: 'Bebas Neue', 'Impact', sans-serif;
+    font-size: 1.1rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #e5c87a;
+    margin-bottom: 1rem;
+    padding-left: 0.25rem;
+    border-left: 3px solid #e5c87a;
+    padding-left: 0.75rem;
+}
+
+/* ── Horizontal Scroll Row ────────────────────────────── */
+.cards-row {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    overflow-x: auto;
+    padding: 0.5rem 0 1.25rem 0;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+    scrollbar-color: #e5c87a33 transparent;
+}
+
+.cards-row::-webkit-scrollbar {
+    height: 4px;
+}
+
+.cards-row::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.cards-row::-webkit-scrollbar-thumb {
+    background-color: #e5c87a55;
+    border-radius: 2px;
+}
+
+/* ── Individual Card ──────────────────────────────────── */
+.card {
+    flex: 0 0 150px;
+    position: relative;
+    border-radius: 6px;
+    overflow: hidden;
+    cursor: pointer;
+    background: #111;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+}
+
+.card:hover {
+    transform: scale(1.07) translateY(-4px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.7), 0 0 0 1px #e5c87a55;
+    z-index: 10;
+}
+
+/* ── Poster Image ─────────────────────────────────────── */
+.card img {
+    width: 100%;
+    height: 225px;
+    object-fit: cover;
+    display: block;
+    transition: filter 0.3s ease;
+}
+
+.card:hover img {
+    filter: brightness(0.4);
+}
+
+/* ── Overlay Info (revealed on hover) ────────────────── */
+.card-overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 0.75rem;
+    background: linear-gradient(to top,
+            rgba(0, 0, 0, 0.95) 0%,
+            rgba(0, 0, 0, 0.5) 50%,
+            transparent 100%);
+    opacity: 1;
+}
+
+.card-title {
+    font-family: 'Bebas Neue', 'Impact', sans-serif;
+    font-size: 0.85rem;
+    letter-spacing: 0.05em;
+    color: #fff;
+    line-height: 1.2;
+    margin: 0 0 0.3rem 0;
+    /* Hide by default, show on hover */
+    transform: translateY(6px);
+    opacity: 0;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.card-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transform: translateY(6px);
+    opacity: 0;
+    transition: transform 0.3s ease 0.05s, opacity 0.3s ease 0.05s;
+}
+
+.card:hover .card-title,
+.card:hover .card-meta {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.card-date {
+    font-family: monospace;
+    font-size: 0.7rem;
+    color: #aaa;
+}
+
+.card-rating {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: #e5c87a;
+    background: rgba(229, 200, 122, 0.15);
+    border: 1px solid #e5c87a55;
+    border-radius: 3px;
+    padding: 1px 5px;
+}
