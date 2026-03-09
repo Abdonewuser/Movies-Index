@@ -1,6 +1,6 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
-import { NavLink } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 import Cards from '../components/Cards'
 
 const Homepage = () => {
@@ -73,9 +73,12 @@ const Homepage = () => {
                     // console.log(category, movies),
                     <div key={category} className="category-section">
                         {/* TODO: Send category name as well */}
-                        <NavLink to={`/category/${movies[0].genre_ids[0]}`} className="category-link">
+                        <Link
+                            to={`/category/${movies[0].genre_ids[0]}`}
+                            className="category-link"
+                            state={{ categoryName: category }}>
                             <h2 className="category-title">{category}</h2>
-                        </NavLink>
+                        </Link>
                         <Cards movies={movies} />
                     </div>
                 ))

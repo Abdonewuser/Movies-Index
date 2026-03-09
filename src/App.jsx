@@ -22,7 +22,7 @@ function App() {
           element: <Category />
         },
         {
-          path: "/movie",
+          path: "/movie/:movieId",
           element: <Movie />
         }
       ]
