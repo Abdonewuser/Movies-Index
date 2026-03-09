@@ -35,8 +35,8 @@ const Cards = ({ movies, layout = 'horizontal' }) => {
     return (
         <div className={layout === 'vertical' ? 'cards-grid' : 'cards-row'}>
             {movies.map((movie) => (
-                <Link to={`/movie/${movie.id}`} key={movie.id} className="card-link" >
-                    <div className="card" >
+                <Link to={`/movie/${movie.id}`} key={movie.id} className="card" >
+                    <div >
                         <img
                             src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
                             alt={movie.title}
