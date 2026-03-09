@@ -18,6 +18,13 @@
     padding-left: 0.75rem;
 }
 
+.cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 1.25rem;
+    padding: 1rem 2rem;
+}
+
 /* ── Horizontal Scroll Row ────────────────────────────── */
 .cards-row {
     display: flex;

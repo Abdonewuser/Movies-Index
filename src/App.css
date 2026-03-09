@@ -1,0 +1,179 @@
+/* ── Google Fonts ─────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600&display=swap');
+
+/* ── CSS Variables ────────────────────────────────────── */
+:root {
+    --bg-primary: #0a0a0f;
+    --bg-secondary: #111118;
+    --bg-card: #16161e;
+    --accent: #e5c87a;
+    --accent-dim: rgba(229, 200, 122, 0.15);
+    --text-primary: #f0f0f0;
+    --text-muted: #888;
+    --border: rgba(255, 255, 255, 0.07);
+    --nav-height: 64px;
+    --radius: 8px;
+}
+
+/* ── Reset ────────────────────────────────────────────── */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* ── Base ─────────────────────────────────────────────── */
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    min-height: 100vh;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* ── Navbar ───────────────────────────────────────────── */
+nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    height: var(--nav-height);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 2.5rem;
+    background: rgba(10, 10, 15, 0.85);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border);
+}
+
+nav .logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.6rem;
+    letter-spacing: 0.15em;
+    color: var(--accent);
+    text-decoration: none;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 0.5rem;
+}
+
+nav a {
+    font-size: 0.82rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    text-decoration: none;
+    padding: 0.4rem 0.85rem;
+    border-radius: var(--radius);
+    transition: color 0.2s, background 0.2s;
+}
+
+nav a:hover,
+nav a.active {
+    color: var(--accent);
+    background: var(--accent-dim);
+}
+
+/* ── Page Layout ──────────────────────────────────────── */
+main,
+.page {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 2rem 2rem 4rem;
+}
+
+/* ── Page Headings ────────────────────────────────────── */
+h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2.5rem;
+    letter-spacing: 0.1em;
+    color: var(--text-primary);
+    margin-bottom: 1.5rem;
+}
+
+h1 span {
+    color: var(--accent);
+}
+
+/* ── Loading State ────────────────────────────────────── */
+.loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 40vh;
+    font-size: 0.9rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    gap: 0.75rem;
+}
+
+.loading::before {
+    content: '';
+    width: 18px;
+    height: 18px;
+    border: 2px solid var(--border);
+    border-top-color: var(--accent);
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* ── Error State ──────────────────────────────────────── */
+.error {
+    text-align: center;
+    padding: 4rem 2rem;
+    color: #e57a7a;
+    font-size: 0.9rem;
+    letter-spacing: 0.05em;
+}
+
+/* ── Scrollbar (global) ───────────────────────────────── */
+::-webkit-scrollbar {
+    width: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bg-primary);
+}
+
+::-webkit-scrollbar-thumb {
+    background: #2a2a35;
+    border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--accent);
+}
+
+/* ── Selection ────────────────────────────────────────── */
+::selection {
+    background: var(--accent);
+    color: #000;
+}
+
+/* ── Utility ──────────────────────────────────────────── */
+.text-accent {
+    color: var(--accent);
+}
+
+.text-muted {
+    color: var(--text-muted);
+}

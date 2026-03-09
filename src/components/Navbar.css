@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;800&display=swap');
 
 /* ── Wrapper (sticky container) ── */
 .navbar-wrapper {
@@ -14,7 +14,7 @@
     justify-content: space-between;
     align-items: center;
     padding: 0.85rem 2.5rem;
-    background: rgba(12, 12, 20, 0.75);
+    background: rgba(10, 10, 15, 0.85);
     backdrop-filter: blur(16px) saturate(180%);
     -webkit-backdrop-filter: blur(16px) saturate(180%);
     border-bottom: 1px solid rgba(255, 255, 255, 0.06);
@@ -47,16 +47,16 @@
 /* ── Nav Links ── */
 .nav-link {
     position: relative;
-    color: rgba(255, 255, 255, 0.7);
+    color: rgba(255, 255, 255, 0.6);
     text-decoration: none;
-    font-size: 0.95rem;
+    font-size: 0.9rem;
     font-weight: 500;
-    letter-spacing: 0.3px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
     padding: 0.35rem 0;
     transition: color 0.3s ease;
 }
 
-/* Animated underline on hover */
 .nav-link::after {
     content: '';
     position: absolute;
@@ -64,49 +64,40 @@
     left: 0;
     width: 0;
     height: 2px;
-    background: linear-gradient(90deg, #7b5cff, #38bdf8);
+    background: #e5c87a;
     border-radius: 2px;
     transition: width 0.35s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
 .nav-link:hover {
-    color: #ffffff;
+    color: #e5c87a;
 }
 
-.nav-link:hover::after {
+.nav-link:hover::after,
+.nav-link.active::after {
     width: 100%;
+}
+
+.nav-link.active {
+    color: #e5c87a;
 }
 
 /* ── Title / Logo ── */
 .navbar-title {
-    font-size: 1.35rem;
-    font-weight: 800;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.6rem;
+    font-weight: 400;
     margin: 0;
-    letter-spacing: -0.3px;
-    background: linear-gradient(135deg, #7b5cff 0%, #38bdf8 50%, #a78bfa 100%);
-    background-size: 200% 200%;
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-    animation: shimmer 4s ease infinite;
-}
-
-@keyframes shimmer {
-    0%,
-    100% {
-        background-position: 0% 50%;
-    }
-
-    50% {
-        background-position: 100% 50%;
-    }
+    letter-spacing: 0.15em;
+    color: #e5c87a;
+    text-decoration: none;
 }
 
 /* ── Search Button ── */
 .search-icon-btn {
-    background: rgba(255, 255, 255, 0.06);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    color: rgba(255, 255, 255, 0.7);
+    background: rgba(229, 200, 122, 0.06);
+    border: 1px solid rgba(229, 200, 122, 0.12);
+    color: rgba(255, 255, 255, 0.6);
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -118,18 +109,18 @@
 }
 
 .search-icon-btn:hover {
-    background: rgba(123, 92, 255, 0.15);
-    border-color: rgba(123, 92, 255, 0.35);
-    color: #ffffff;
+    background: rgba(229, 200, 122, 0.12);
+    border-color: rgba(229, 200, 122, 0.35);
+    color: #e5c87a;
     transform: translateY(-1px);
-    box-shadow: 0 4px 12px rgba(123, 92, 255, 0.2);
+    box-shadow: 0 4px 12px rgba(229, 200, 122, 0.15);
 }
 
 .search-icon-btn.active {
-    background: rgba(123, 92, 255, 0.2);
-    border-color: rgba(123, 92, 255, 0.45);
-    color: #ffffff;
-    box-shadow: 0 0 14px rgba(123, 92, 255, 0.25);
+    background: rgba(229, 200, 122, 0.18);
+    border-color: rgba(229, 200, 122, 0.45);
+    color: #e5c87a;
+    box-shadow: 0 0 14px rgba(229, 200, 122, 0.2);
 }
 
 .search-icon-btn:active {
@@ -146,13 +137,13 @@
     width: auto;
     min-width: 380px;
     max-width: 500px;
-    background: rgba(18, 18, 30, 0.92);
+    background: rgba(12, 12, 18, 0.95);
     backdrop-filter: blur(20px) saturate(180%);
     -webkit-backdrop-filter: blur(20px) saturate(180%);
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(229, 200, 122, 0.1);
     border-radius: 14px;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4),
-                0 0 0 1px rgba(123, 92, 255, 0.08);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5),
+        0 0 0 1px rgba(229, 200, 122, 0.06);
     opacity: 0;
     visibility: hidden;
     transition: opacity 0.3s ease, transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), visibility 0.3s ease;
@@ -174,16 +165,16 @@
 }
 
 .search-bar-icon {
-    color: rgba(255, 255, 255, 0.35);
+    color: rgba(229, 200, 122, 0.4);
     flex-shrink: 0;
 }
 
 .search-input {
     width: 100%;
     padding: 0.6rem 1rem;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(229, 200, 122, 0.12);
     border-radius: 10px;
-    background: rgba(255, 255, 255, 0.05);
+    background: rgba(229, 200, 122, 0.04);
     color: #ffffff;
     font-family: 'Inter', sans-serif;
     font-size: 0.95rem;
@@ -192,12 +183,12 @@
 }
 
 .search-input::placeholder {
-    color: rgba(255, 255, 255, 0.3);
+    color: rgba(255, 255, 255, 0.25);
 }
 
 .search-input:focus {
-    border-color: rgba(123, 92, 255, 0.5);
-    box-shadow: 0 0 0 3px rgba(123, 92, 255, 0.12);
+    border-color: rgba(229, 200, 122, 0.45);
+    box-shadow: 0 0 0 3px rgba(229, 200, 122, 0.08);
 }
 
 /* ── Responsive ── */
@@ -208,11 +199,11 @@
     }
 
     .navbar-title {
-        font-size: 1.1rem;
+        font-size: 1.25rem;
     }
 
     .nav-link {
-        font-size: 0.85rem;
+        font-size: 0.8rem;
     }
 
     .search-bar-inner {

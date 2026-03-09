@@ -1,14 +1,15 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
+import { NavLink } from 'react-router-dom'
 import Cards from '../components/Cards'
 
 const Homepage = () => {
     const [moviesByCategory, setMoviesByCategory] = useState({});
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
-    const [searchQuery, setSearchQuery] = useState('');
-    const [currentPage, setCurrentPage] = useState(1);
-    const [totalPages, setTotalPages] = useState(1);
+    // const [searchQuery, setSearchQuery] = useState('');
+    // const [currentPage, setCurrentPage] = useState(1);
+    // const [totalPages, setTotalPages] = useState(1);
 
     const apiKey = import.meta.env.VITE_APP_API_KEY;
     const categories = {
@@ -34,7 +35,7 @@ const Homepage = () => {
             const results = {};
 
             for (const [category, endpoint] of Object.entries(categories)) {
-                console.log(apiKey)
+                // console.log(apiKey)
                 const res = await fetch(
                     `https://api.themoviedb.org/3${endpoint}&api_key=${apiKey}`
                 );
@@ -61,16 +62,20 @@ const Homepage = () => {
     // TODO: handle pagination
 
     return (
-        <div>
+        <div className='page'>
             {/* TODO: Genre, Year, Rating filter */}
             {loading ? (
-                <p>Loading...</p>
+                <div className="loading">Loading</div>
             ) : error ? (
-                <p>Error occurred while fetching movies.</p>
+                <div className="error">Something went wrong.</div>
             ) : (
                 Object.entries(moviesByCategory).map(([category, movies]) => (
+                    // console.log(category, movies),
                     <div key={category} className="category-section">
-                        <h2 className="category-title">{category}</h2>
+                        {/* TODO: Send category name as well */}
+                        <NavLink to={`/category/${movies[0].genre_ids[0]}`} className="category-link">
+                            <h2 className="category-title">{category}</h2>
+                        </NavLink>
                         <Cards movies={movies} />
                     </div>
                 ))
