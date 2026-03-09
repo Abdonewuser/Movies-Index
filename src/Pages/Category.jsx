@@ -2,10 +2,11 @@ import React from 'react'
 import { useState, useEffect } from 'react'
 import { useLocation, useParams } from 'react-router-dom'
 import Cards from '../components/Cards'
-
+import './Category.css'
 
 const Category = () => {
     const [movies, setMovies] = useState([]);
+    const [loading, setLoading] = useState(true);
     const param = useParams();
     const apiKey = import.meta.env.VITE_APP_API_KEY;
     const categoryId = param.categoryId;
@@ -27,6 +28,7 @@ const Category = () => {
     // console.log(url)
 
     const fetchMovies = async () => {
+        setLoading(true);
         try {
             const res = await fetch(url);
             const data = await res.json();
@@ -35,6 +37,8 @@ const Category = () => {
             setTotalPages(data.total_pages);
         } catch (error) {
             console.error('Error fetching movies:', error);
+        } finally {
+            setLoading(false);
         }
     };
 
@@ -44,29 +48,37 @@ const Category = () => {
     }, [categoryId, currentPage]);
 
     return (
-        <div>
-
-            {/* TODO: Add CSS for this h1 */}
+        <div className="category-page">
             <h1>{categoryName}</h1>
-            <Cards movies={movies} layout="vertical" />
 
-            {/* TODO: Add CSS for pagination buttons */}
-            <button onClick={() => setCurrentPage(currentPage - 1)} disabled={currentPage === 1}>
-                Prev
-            </button>
-            {pages.map(page => (
-                <button
-                    key={page}
-                    onClick={() => setCurrentPage(page)}
-                    disabled={page === currentPage}
-                >
-                    {page}
+            {loading ? (
+                <div className="loading-screen">
+                    <div className="film-loader">
+                        <div className="reel">
+                            <span /><span /><span /><span />
+                            <span /><span /><span /><span />
+                        </div>
+                        <p className="loading-text">Loading</p>
+                    </div>
+                </div>
+            ) : (
+                <Cards movies={movies} layout="vertical" />
+            )}
+
+            <div className="pagination">
+                <button className="nav-btn" onClick={() => setCurrentPage(p => p - 1)} disabled={currentPage === 1 || loading}>
+                    Prev
                 </button>
-            ))}
-            <p>...{totalPages}</p>
-            <button onClick={() => setCurrentPage(currentPage + 1)} disabled={currentPage === totalPages}>
-                Next
-            </button>
+                {pages.map(page => (
+                    <button key={page} onClick={() => setCurrentPage(page)} disabled={page === currentPage || loading}>
+                        {page}
+                    </button>
+                ))}
+                <p className="total-pages">…{totalPages}</p>
+                <button className="nav-btn" onClick={() => setCurrentPage(p => p + 1)} disabled={currentPage === totalPages || loading}>
+                    Next
+                </button>
+            </div>
         </div>
     )
 }

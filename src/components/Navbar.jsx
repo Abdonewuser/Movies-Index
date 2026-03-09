@@ -1,9 +1,18 @@
 import React, { useState, useRef, useEffect } from 'react'
 import './Navbar.css'
+import { useForm } from "react-hook-form";
+import { useNavigate } from 'react-router-dom';
+
+
 
 const Navbar = () => {
     const [searchOpen, setSearchOpen] = useState(false)
     const inputRef = useRef(null)
+    const {
+        register,
+        handleSubmit,
+        formState: { errors },
+    } = useForm();
 
     const toggleSearch = () => setSearchOpen(prev => !prev)
 
@@ -11,7 +20,13 @@ const Navbar = () => {
         if (searchOpen && inputRef.current) {
             inputRef.current.focus()
         }
-    }, [searchOpen])
+    }, [searchOpen]);
+
+    const navigate = useNavigate();
+    const onSubmit = (data) => {
+        navigate(`/result/${data.search}`)
+    };
+
 
     return (
         <header className="navbar-wrapper">
@@ -25,7 +40,6 @@ const Navbar = () => {
                 </div>
 
                 <div className="navbar-right">
-                    <a href="#about" className="nav-link">About</a>
                     <button
                         className={`search-icon-btn ${searchOpen ? 'active' : ''}`}
                         aria-label="Search"
@@ -49,30 +63,35 @@ const Navbar = () => {
             </nav>
 
             {/* Slide-down search bar */}
-            <div className={`search-bar-container ${searchOpen ? 'open' : ''}`}>
-                <div className="search-bar-inner">
-                    <svg
-                        className="search-bar-icon"
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="18" height="18"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                    >
-                        <circle cx="11" cy="11" r="8"></circle>
-                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-                    </svg>
-                    <input
-                        ref={inputRef}
-                        type="text"
-                        className="search-input"
-                        placeholder="Search for a movie..."
-                    />
+            <form onSubmit={handleSubmit(onSubmit)}>
+                <div className={`search-bar-container ${searchOpen ? 'open' : ''}`}>
+                    <div className="search-bar-inner">
+                        <svg
+                            className="search-bar-icon"
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="18" height="18"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            strokeWidth="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                        >
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                        </svg>
+                        <input
+                            ref={inputRef}
+                            type="text"
+                            className="search-input"
+                            placeholder="Search for a movie..."
+                            {...register("search", { required: true })}
+                        />
+                    </div>
                 </div>
-            </div>
+
+            </form>
+
         </header>
     )
 }

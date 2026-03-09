@@ -1,0 +1,103 @@
+/* MightLike.css */
+
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500&display=swap');
+
+/* Container */
+div:has(> h3) {
+    padding: 2.5rem 1.5rem;
+    background: #0a0a0f;
+    font-family: 'DM Sans', sans-serif;
+}
+
+h3 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2rem;
+    letter-spacing: 0.12em;
+    color: #f0e6d0;
+    margin: 0 0 1.75rem 0;
+    text-transform: uppercase;
+    position: relative;
+    display: inline-block;
+}
+
+h3::after {
+    content: '';
+    display: block;
+    width: 40%;
+    height: 2px;
+    background: linear-gradient(90deg, #e8a045, transparent);
+    margin-top: 6px;
+}
+
+/* Cards grid */
+.cards-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 1.25rem;
+}
+
+/* Individual card */
+.card {
+    position: relative;
+    border-radius: 8px;
+    overflow: hidden;
+    background: #13131a;
+    cursor: pointer;
+    transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1),
+        box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-6px) scale(1.02);
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6),
+        0 0 0 1px rgba(232, 160, 69, 0.25);
+}
+
+/* Poster image */
+.card img {
+    width: 100%;
+    aspect-ratio: 2 / 3;
+    object-fit: cover;
+    display: block;
+    transition: filter 0.3s ease;
+}
+
+.card:hover img {
+    filter: brightness(0.55);
+}
+
+/* Title overlay */
+.card h4 {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: 0;
+    padding: 2rem 0.75rem 0.75rem;
+    font-size: 0.78rem;
+    font-weight: 500;
+    color: #f0e6d0;
+    background: linear-gradient(to top, rgba(10, 10, 15, 0.95) 60%, transparent);
+    opacity: 0;
+    transform: translateY(4px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    line-height: 1.3;
+    letter-spacing: 0.02em;
+}
+
+.card:hover h4 {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+    .cards-container {
+        grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+        gap: 0.75rem;
+    }
+
+    h3 {
+        font-size: 1.6rem;
+    }
+}

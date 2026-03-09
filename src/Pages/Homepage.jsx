@@ -1,6 +1,5 @@
-import React from 'react'
 import { useState, useEffect } from 'react'
-import { Link, NavLink } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import Cards from '../components/Cards'
 
 const Homepage = () => {
@@ -8,12 +7,9 @@ const Homepage = () => {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
     // const [searchQuery, setSearchQuery] = useState('');
-    // const [currentPage, setCurrentPage] = useState(1);
-    // const [totalPages, setTotalPages] = useState(1);
 
     const apiKey = import.meta.env.VITE_APP_API_KEY;
     const categories = {
-        // popular: "/movie/popular",
         action: "/discover/movie?with_genres=28",
         adventure: "/discover/movie?with_genres=12",
         animation: "/discover/movie?with_genres=16",
@@ -58,12 +54,8 @@ const Homepage = () => {
 
     // TODO: handle search
 
-
-    // TODO: handle pagination
-
     return (
         <div className='page'>
-            {/* TODO: Genre, Year, Rating filter */}
             {loading ? (
                 <div className="loading">Loading</div>
             ) : error ? (
@@ -72,7 +64,6 @@ const Homepage = () => {
                 Object.entries(moviesByCategory).map(([category, movies]) => (
                     // console.log(category, movies),
                     <div key={category} className="category-section">
-                        {/* TODO: Send category name as well */}
                         <Link
                             to={`/category/${movies[0].genre_ids[0]}`}
                             className="category-link"

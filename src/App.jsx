@@ -1,13 +1,12 @@
-import { useState } from 'react'
 import './App.css'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import Layout from './components/Layout'
 import Homepage from './Pages/Homepage'
 import Movie from './Pages/Movie'
 import Category from './Pages/Category'
+import Result from './Pages/Result'
 
 function App() {
-  const [count, setCount] = useState(0)
   const router = createBrowserRouter([
     {
       path: "/",
@@ -24,6 +23,10 @@ function App() {
         {
           path: "/movie/:movieId",
           element: <Movie />
+        },
+        {
+          path: "/result/:searchQuery",
+          element: <Result />
         }
       ]
     }

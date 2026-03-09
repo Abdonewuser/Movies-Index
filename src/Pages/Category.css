@@ -1,0 +1,199 @@
+/* Category.css */
+
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500&display=swap');
+
+/* ── Page Wrapper ── */
+.category-page {
+    min-height: 100vh;
+    background: #0a0a0f;
+    padding: 2.5rem 3rem 4rem;
+    font-family: 'DM Sans', sans-serif;
+}
+
+/* ── Category Title h1 ── */
+.category-page h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2.8rem, 7vw, 5rem);
+    letter-spacing: 0.1em;
+    color: #f0e6d0;
+    text-transform: uppercase;
+    line-height: 1;
+    margin-bottom: 2rem;
+    position: relative;
+    display: inline-block;
+}
+
+.category-page h1::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -8px;
+    width: 55%;
+    height: 3px;
+    background: linear-gradient(90deg, #e8a045, transparent);
+}
+
+/* ── Loading ── */
+.category-page .loading-screen {
+    min-height: 55vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.category-page .film-loader {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.75rem;
+}
+
+.category-page .reel {
+    position: relative;
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    border: 3px solid rgba(232, 160, 69, 0.15);
+    animation: spin 1.4s linear infinite;
+}
+
+.category-page .reel span {
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    background: #e8a045;
+    border-radius: 50%;
+    transform-origin: 36px 36px;
+}
+
+.category-page .reel span:nth-child(1) {
+    transform: rotate(0deg) translateX(30px);
+    opacity: 1;
+}
+
+.category-page .reel span:nth-child(2) {
+    transform: rotate(45deg) translateX(30px);
+    opacity: 0.85;
+}
+
+.category-page .reel span:nth-child(3) {
+    transform: rotate(90deg) translateX(30px);
+    opacity: 0.7;
+}
+
+.category-page .reel span:nth-child(4) {
+    transform: rotate(135deg) translateX(30px);
+    opacity: 0.55;
+}
+
+.category-page .reel span:nth-child(5) {
+    transform: rotate(180deg) translateX(30px);
+    opacity: 0.4;
+}
+
+.category-page .reel span:nth-child(6) {
+    transform: rotate(225deg) translateX(30px);
+    opacity: 0.3;
+}
+
+.category-page .reel span:nth-child(7) {
+    transform: rotate(270deg) translateX(30px);
+    opacity: 0.2;
+}
+
+.category-page .reel span:nth-child(8) {
+    transform: rotate(315deg) translateX(30px);
+    opacity: 0.1;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.category-page .loading-text {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.1rem;
+    letter-spacing: 0.35em;
+    color: #a09070;
+    text-transform: uppercase;
+    animation: pulse 1.4s ease-in-out infinite;
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        opacity: 0.4;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
+
+/* ── Pagination ── */
+.pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+    margin-top: 3rem;
+    flex-wrap: wrap;
+}
+
+.pagination button {
+    min-width: 38px;
+    height: 38px;
+    padding: 0 0.6rem;
+    background: transparent;
+    border: 1px solid rgba(232, 160, 69, 0.2);
+    border-radius: 6px;
+    color: #a09070;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.pagination button:hover:not(:disabled) {
+    background: rgba(232, 160, 69, 0.1);
+    border-color: rgba(232, 160, 69, 0.5);
+    color: #f0e6d0;
+}
+
+/* Active / current page */
+.pagination button:disabled:not(.pagination button[disabled].nav-btn) {
+    background: #e8a045;
+    border-color: #e8a045;
+    color: #0a0a0f;
+    font-weight: 700;
+    cursor: default;
+}
+
+/* Prev / Next nav buttons */
+.pagination .nav-btn {
+    padding: 0 1rem;
+    letter-spacing: 0.05em;
+    font-size: 0.78rem;
+    text-transform: uppercase;
+}
+
+.pagination .nav-btn:disabled {
+    opacity: 0.25;
+    cursor: not-allowed;
+    background: transparent;
+    border-color: rgba(232, 160, 69, 0.1);
+    color: #a09070;
+}
+
+/* Total pages indicator */
+.pagination .total-pages {
+    font-size: 0.8rem;
+    color: #a09070;
+    letter-spacing: 0.05em;
+    padding: 0 0.25rem;
+    align-self: center;
+}
