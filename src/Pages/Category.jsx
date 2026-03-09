@@ -12,7 +12,13 @@ const Category = () => {
     // pagination states
     const [currentPage, setCurrentPage] = useState(1);
     const [totalPages, setTotalPages] = useState(1);
-    const url = `https://api.themoviedb.org/3/discover/movie?with_genres=${categoryId}&api_key=${apiKey}`;
+    const pages = [
+        currentPage - 1,
+        currentPage,
+        currentPage + 1,
+        currentPage + 2,
+    ].filter(page => page >= 1 && page <= totalPages);
+    const url = `https://api.themoviedb.org/3/discover/movie?with_genres=${categoryId}&api_key=${apiKey}&page=${currentPage}`;
     // console.log(url)
 
     const fetchMovies = async () => {
@@ -21,6 +27,7 @@ const Category = () => {
             const data = await res.json();
             console.log(data);
             setMovies(data.results);
+            setTotalPages(data.total_pages);
         } catch (error) {
             console.error('Error fetching movies:', error);
         }
@@ -28,14 +35,30 @@ const Category = () => {
 
     useEffect(() => {
         fetchMovies();
-    }, [categoryId]);
+        window.scrollTo(0, 0);
+    }, [categoryId, currentPage]);
 
     return (
         <div>
 
             <h1>Category: {categoryId}</h1>
             <Cards movies={movies} layout="vertical" />
-
+            <button onClick={() => setCurrentPage(currentPage - 1)} disabled={currentPage === 1}>
+                Prev
+            </button>
+            {pages.map(page => (
+                <button
+                    key={page}
+                    onClick={() => setCurrentPage(page)}
+                    disabled={page === currentPage}
+                >
+                    {page}
+                </button>
+            ))}
+            <p>...{totalPages}</p>
+            <button onClick={() => setCurrentPage(currentPage + 1)} disabled={currentPage === totalPages}>
+                Next
+            </button>
         </div>
     )
 }
