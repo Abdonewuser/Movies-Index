@@ -5,17 +5,23 @@ import { useNavigate } from 'react-router-dom';
 
 
 
+// Navbar component displaying site navigation and a toggleable search bar
 const Navbar = () => {
+    // State to track whether the search bar is open
     const [searchOpen, setSearchOpen] = useState(false)
-    const inputRef = useRef(null)
+    const inputRef = useRef(null) // Reference to the search input element
+
+    // React Hook Form for handling search submission
     const {
         register,
         handleSubmit,
         formState: { errors },
     } = useForm();
 
+    // Toggles the visibility of the search bar
     const toggleSearch = () => setSearchOpen(prev => !prev)
 
+    // Focus the search input field whenever the search bar is opened
     useEffect(() => {
         if (searchOpen && inputRef.current) {
             inputRef.current.focus()
@@ -23,6 +29,8 @@ const Navbar = () => {
     }, [searchOpen]);
 
     const navigate = useNavigate();
+
+    // Navigate to the results page with the user's search query
     const onSubmit = (data) => {
         navigate(`/result/${data.search}`)
     };
@@ -81,7 +89,6 @@ const Navbar = () => {
                             <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
                         </svg>
                         <input
-                            ref={inputRef}
                             type="text"
                             className="search-input"
                             placeholder="Search for a movie..."

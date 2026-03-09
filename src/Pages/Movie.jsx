@@ -3,14 +3,19 @@ import { useParams } from "react-router-dom"
 import MightLike from "../components/MightLike";
 import './Movie.css'
 
+// Component to display detailed information and cast for a specific movie
 const Movie = () => {
+    // State variables for movie details, cast list, and loading status
     const [movieData, setMovieData] = useState(null);
     const [cast, setcast] = useState();
     const [loading, setLoading] = useState(true);
+    
+    // Extract movieId from URL parameters
     const param = useParams();
     const movieId = param.movieId;
     console.log(movieId);
 
+    // API endpoints for fetching movie details and credits
     const apiKey = import.meta.env.VITE_APP_API_KEY;
     const url = `https://api.themoviedb.org/3/movie/${movieId}?api_key=${apiKey}`;
     const castUrl = `https://api.themoviedb.org/3/movie/${movieId}/credits?api_key=${apiKey}`;
@@ -36,6 +41,7 @@ const Movie = () => {
         }
     };
 
+    // Effect hook to fetch both movie details and cast concurrently when the component mounts
     useEffect(() => {
         const loadData = async () => {
             setLoading(true);

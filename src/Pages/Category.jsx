@@ -4,9 +4,13 @@ import { useLocation, useParams } from 'react-router-dom'
 import Cards from '../components/Cards'
 import './Category.css'
 
+// Component to display movies belonging to a specific category (genre) with pagination
 const Category = () => {
+    // State for storing fetched movies and loading status
     const [movies, setMovies] = useState([]);
     const [loading, setLoading] = useState(true);
+    
+    // Retrieve URL parameters and state
     const param = useParams();
     const apiKey = import.meta.env.VITE_APP_API_KEY;
     const categoryId = param.categoryId;
@@ -24,9 +28,11 @@ const Category = () => {
         currentPage + 4,
         currentPage + 5
     ].filter(page => page >= 1 && page <= totalPages);
+    // API endpoint for fetching movies by genre with pagination
     const url = `https://api.themoviedb.org/3/discover/movie?with_genres=${categoryId}&api_key=${apiKey}&page=${currentPage}`;
     // console.log(url)
 
+    // Async function to fetch movies from the TMDB API
     const fetchMovies = async () => {
         setLoading(true);
         try {

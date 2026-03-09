@@ -2,13 +2,16 @@ import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import Cards from '../components/Cards'
 
+// Homepage component that fetches and displays movie collections mapped by genre
 const Homepage = () => {
+    // State variables for mapping genres to arrays of movie objects
     const [moviesByCategory, setMoviesByCategory] = useState({});
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
-    // const [searchQuery, setSearchQuery] = useState('');
 
     const apiKey = import.meta.env.VITE_APP_API_KEY;
+    
+    // Dictionary mapping category names to their respective TMDB API endpoints
     const categories = {
         action: "/discover/movie?with_genres=28",
         adventure: "/discover/movie?with_genres=12",
@@ -24,10 +27,12 @@ const Homepage = () => {
         sciFi: "/discover/movie?with_genres=878",
         thriller: "/discover/movie?with_genres=53"
     };
+    // Async function to fetch movies sequentially for each defined category
     const fetchMovies = async () => {
         try {
             setLoading(true);
 
+            // Object to collect data before saving all results to state
             const results = {};
 
             for (const [category, endpoint] of Object.entries(categories)) {
@@ -48,6 +53,7 @@ const Homepage = () => {
             setLoading(false);
         }
     };
+    // Initial effect hook to fetch movies once when the page loads
     useEffect(() => {
         fetchMovies();
     }, []);
@@ -61,6 +67,7 @@ const Homepage = () => {
             ) : error ? (
                 <div className="error">Something went wrong.</div>
             ) : (
+                // Map over the state object to render a category section for each genre
                 Object.entries(moviesByCategory).map(([category, movies]) => (
                     // console.log(category, movies),
                     <div key={category} className="category-section">

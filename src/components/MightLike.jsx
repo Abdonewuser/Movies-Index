@@ -2,7 +2,9 @@ import React, { use, useEffect, useState } from 'react'
 import './MightLike.css'
 import { Link } from 'react-router-dom';
 
+// Component to fetch and display similar movies based on a specific genre ID
 const MightLike = ({ genre }) => {
+    // API keys and URL construction
     const apiKey = import.meta.env.VITE_APP_API_KEY;
     const url = `https://api.themoviedb.org/3/discover/movie?with_genres=${genre}&api_key=${apiKey}`;
     const [movies, setMovies] = useState([]);
@@ -18,6 +20,7 @@ const MightLike = ({ genre }) => {
         }
     };
 
+    // Run fetch operation whenever the genre prop changes
     useEffect(() => {
         if (genre) {
             fetchMovies();

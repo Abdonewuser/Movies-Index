@@ -1,12 +1,15 @@
 import { Link } from 'react-router-dom';
 import './Cards.css';
 
+// Render a list of movie objects either horizontally or vertically using card styling
 const Cards = ({ movies, layout = 'horizontal' }) => {
     return (
         <div className={layout === 'vertical' ? 'cards-grid' : 'cards-row'}>
+            {/* Map over the movie array to generate individual card elements */}
             {movies.map((movie) => (
                 <Link to={`/movie/${movie.id}`} key={movie.id} className="card" >
                     <div >
+                        {/* Display movie poster */}
                         <img
                             src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
                             alt={movie.title}

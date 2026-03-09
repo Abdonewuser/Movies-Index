@@ -6,7 +6,9 @@ import Movie from './Pages/Movie'
 import Category from './Pages/Category'
 import Result from './Pages/Result'
 
+// Main App component responsible for defining the application's routing structure
 function App() {
+  // Define application routes using createBrowserRouter
   const router = createBrowserRouter([
     {
       path: "/",
@@ -31,6 +33,8 @@ function App() {
       ]
     }
   ])
+
+  // Provide the created router to the entire application
   return (
     <>
       <RouterProvider router={router} />
